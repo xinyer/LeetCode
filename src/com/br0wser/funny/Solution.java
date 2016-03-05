@@ -126,4 +126,51 @@ public class Solution {
         return num%9;
     }
 
+    /**
+     * NO. 168 Excel Sheet Column Title My Submissions Question
+     * Given a positive integer, return its corresponding column title as appear in an Excel sheet.
+     * For example:
+     * 1 -> A
+     * 2 -> B
+     * 3 -> C
+     * ...
+     * 26 -> Z
+     * 27 -> AA
+     * 28 -> AB
+     */
+    public String convertToTitle(int n) {
+        char[] alpha = "ZABCDEFGHIJKLMNOPQRSTUVWXY".toCharArray();
+        String s = "";
+        while(n != 0){
+            s = alpha[n % 26] + s;
+            if(n % 26 == 0)
+                n -= 26;
+            n /= 26;
+        }
+        return s;
+    }
+
+    /**
+     * NO. 171 Excel Sheet Column Number My Submissions Question
+     * Related to question Excel Sheet Column Title
+     * Given a column title as appear in an Excel sheet, return its corresponding column number.
+     * For example:
+     * A -> 1
+     * B -> 2
+     * C -> 3
+     * ...
+     * Z -> 26
+     * AA -> 27
+     * AB -> 28
+     */
+    public int titleToNumber(String s) {
+        char[] chars = s.toCharArray();
+
+        int ret = 0;
+        for (int i=0, n=chars.length-1; i<chars.length; i++, n--) {
+            ret += (chars[i]-'A'+1)*Math.pow(26, n);
+        }
+        return ret;
+    }
+
 }
